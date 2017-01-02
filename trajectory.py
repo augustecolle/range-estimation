@@ -117,7 +117,7 @@ class traject(object):
         x = cum_distances
         y = np.cumsum(height_diff)
         #determining smoothing factor according to the docs: (m - sqrt(2*m)) * std**2 <= s <= (m + sqrt(2*m)) * std**2 but this gives an horrible over smoothing so I am choosing my own
-        tck = interpolate.splrep(x, y, s=100) #used to be 40 for the profile with loads of data
+        tck = interpolate.splrep(x, y, s=30) #used to be 40 for the profile with loads of data
         xnew = np.arange(0, cum_distances[-1], deltax)
         self.heights_c = interpolate.splev(xnew, tck, der=0)
         self.slopes =  interpolate.splev(xnew, tck, der=1)
